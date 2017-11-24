@@ -1,0 +1,10 @@
+<li>
+    <div>
+        {{game.title | uppercase}}
+      <span *ngIf="game.price >= 100">-> Price: {{game.price}}</span>
+    </div>
+</li>
+<div>
+    <button (click)="react(true)">Like</button>
+    <button (click)="react(false)">Dislike</button>
+</div>

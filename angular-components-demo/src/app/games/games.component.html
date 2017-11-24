@@ -1,0 +1,11 @@
+<h1>Games List</h1>
+<p>Pick a game to Buy</p>
+<p>Likes : {{likes}}</p>
+<p>Dislikes : {{dislikes}}</p>
+<ul>
+  <game *ngFor="let game of games" 
+  [gameProp]="game"
+  (onReacted)="onReacted($event)"> 
+  </game>
+</ul>
+<button (click)="showAdditionalContent()">Show Image</button>
