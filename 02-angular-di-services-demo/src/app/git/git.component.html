@@ -1,0 +1,18 @@
+<div *ngIf="profileData">
+  <div>
+    <strong>
+      Username:
+    </strong>
+    <span>{{profileData.login}}</span>
+  </div>
+  <div>
+    <strong>
+      Avatar:
+    </strong>
+    <img alt="avatar_url" src="{{profileData.avatar_url}}" />
+  </div>
+  <strong>
+    Location:
+  </strong>
+  <span>{{profileData.location}}</span>
+</div>
