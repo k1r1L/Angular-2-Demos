@@ -1,0 +1,53 @@
+<div class="container">
+  <h1 appHighlight [highlightColor]="color">Laptop Form</h1>
+  <div>{{name | uppercase }}</div>
+  <div>{{leva | number: '3.1-5' }}</div>
+  <form (ngSubmit)="onSubmit()" #laptopForm="ngForm">
+    <div class="form-group">
+      <label for="processor">Proccessor</label>
+      <input type="text" class="form-control" id="processor" 
+      required 
+      [(ngModel)]="model.processor"
+      name="processor"
+      #processor="ngModel">
+      <div [hidden]="processor.valid || processor.pristine" class="alert alert-danger">
+        Processor is required!
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="ram">RAM</label>
+      <input type="text" class="form-control" id="ram" 
+      required
+      [(ngModel)]="model.ram"
+      name="ram"
+      #ram="ngModel">
+      <div [hidden]="ram.valid || ram.pristine" class="alert alert-danger">
+        RAM is required!
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="hardDisk">Hard Disk (GB)</label>
+      <input type="number" class="form-control" id="hardDisk"
+      [(ngModel)]="model.hardDisk"
+      name="hardDisk">
+    </div>
+
+    <div class="form-group">
+      <label for="os">Operating System</label>
+      <select class="form-control" id="os" 
+      required
+      [(ngModel)]="model.operatingSystem"
+      name="operatingSystem"
+      #os="ngModel">
+        <option *ngFor="let os of operatingSystems" [value]="os">{{os}}</option>
+      </select>
+      <div [hidden]="os.valid || os.pristine" class="alert alert-danger">
+        Operating System is required!
+      </div>
+    </div>
+
+    <button [disabled]="!laptopForm.form.valid" type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>

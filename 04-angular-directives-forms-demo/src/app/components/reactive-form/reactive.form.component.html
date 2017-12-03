@@ -1,0 +1,48 @@
+{{laptopForm.value | json}}
+<div class="container">
+  <h1>Laptop Form</h1>
+  <form (ngSubmit)="save()" [formGroup]="laptopForm">
+    <div class="form-group" 
+     [ngClass]="{'has-error': processorMessage}">
+      <label for="processor">Proccessor</label>
+      <input type="text" class="form-control" id="processor" 
+      formControlName="processor">
+      <div *ngIf="processorMessage" class="alert alert-danger">
+        {{processorMessage}}
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error': ramMessage}">
+      <label for="ram">RAM</label>
+      <input type="text" class="form-control" id="ram" 
+      required 
+      formControlName="ram">
+      <div *ngIf="ramMessage" class="alert alert-danger">
+        {{ramMessage}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="hardDisk">Hard Disk (GB)</label>
+      <input type="number" class="form-control" id="hardDisk"
+       formControlName="hardDisk">
+       <div *ngIf="(laptopForm.get('hardDisk').touched 
+       || laptopForm.get('hardDisk').dirty) 
+       && laptopForm.get('hardDisk').errors" class="alert alert-danger">
+         <span *ngIf="laptopForm.get('hardDisk').errors.min || laptopForm.get('hardDisk').errors.max">
+           Hard Disk should be between 500 and 3000 GB
+         </span>
+       </div>
+    </div>
+
+    <div class="form-group">
+      <label for="os">Operating System</label>
+      <select class="form-control" id="os" required formControlName="os">
+        <option *ngFor="let os of operatingSystems" [value]="os">{{os}}</option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="!laptopForm.valid" class="btn btn-success">Submit</button>
+    <button type="button" class="btn btn-default" (click)="addData()">Test Data</button>
+  </form>
+</div>
